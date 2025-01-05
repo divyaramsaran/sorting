@@ -1,25 +1,19 @@
-const sum = function (sum, element) {
-  return sum + element;
-}
+const sum = (sum, element) => sum + element;
 
-const sort = function (array) {
+const sort = (array) => array.sort((num1, num2) => num1 - num2);
 
-  return array.sort(function (num1, num2) {
-    return num1 - num2;
-  });
-  
-}
+const sortNumbers = (arrayOfArrays) => {
+  arrayOfArrays.map(sort);
 
-const sortNumbers = function (arrayOfArrays) {
+  return arrayOfArrays.sort(
+    (num1, num2) => num1.reduce(sum) - num2.reduce(sum)
+  );
+};
 
-  arrayOfArrays.map(sort); 
-
-  return arrayOfArrays.sort(function (num1, num2) {
-    return num1.reduce(sum) - num2.reduce(sum);
-  });
-
-}
-
-const arrayOfArrays = [[1, 8, 5, 6], [1, 1], [9, 5]];
+const arrayOfArrays = [
+  [1, 8, 5, 6],
+  [1, 1],
+  [9, 5],
+];
 
 console.log(sortNumbers(arrayOfArrays));

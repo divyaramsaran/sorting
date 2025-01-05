@@ -1,28 +1,17 @@
-//---> compound sorting
+const isNumber = (element) => typeof element === "number";
 
-const isNumber = function (element) {
-  return +element === element;
-}
+const isString = (element) => typeof element === "string";
 
-const isString = function (element) {
-  return +element !== element;
-}
+const combinedSorting = (array) => {
+  const numbersSet = array.filter(isNumber);
+  const stringsSet = array.filter(isString);
 
-const combinedSorting = function (array) {
-  const numbersList = array.filter(isNumber);
-  const stringsList = array.filter(isString);
+  numbersSet.sort((num1, num2) => num1 - num2);
+  stringsSet.sort();
 
-  return function () {
-    numbersList.sort(function (num1, num2) {
-      return num1 - num2;
-    });
+  return [...numbersSet, ...stringsSet];
+};
 
-    stringsList.sort();
+const combinedCollection = [9, 7, "goa", "america", 78, 4, "ball"];
 
-    return [...numbersList, ...stringsList]
-  }
-}
-
-const combinedCollection = [9, 7, "h", "a", 78, 4];
-
-console.log(combinedSorting(combinedCollection)());
+console.log(combinedSorting(combinedCollection));
